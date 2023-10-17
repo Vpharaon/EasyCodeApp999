@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
         val textView = findViewById<TextView>(R.id.textView)
         textView.setOnClickListener {
-            
+            Toast.makeText(it.context, "Click on view", Toast.LENGTH_SHORT).show()
         }
     }
 }
