@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        (application as App).activityCreated(savedInstanceState == null)
+
         Log.i(TAG, "onCreate: MainActivity ${savedInstanceState.hashCode()}")
 
         count = savedInstanceState?.getInt(TAG) ?: 0

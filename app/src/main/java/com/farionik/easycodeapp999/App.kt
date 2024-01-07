@@ -6,6 +6,7 @@ import android.util.Log
 
 class App : Application {
 
+    private val handleDeath = HandleDeath.Base()
     private val TAG = "vf"
 
     constructor() {
@@ -16,5 +17,18 @@ class App : Application {
         super.onCreate()
 
         Log.i(TAG, "onCreate: application ${Process.myPid()}")
+    }
+
+    fun activityCreated(firstOpening: Boolean) {
+        if (firstOpening) {
+            handleDeath.firstOpening()
+            Log.i(TAG, "activityCreated: very first opening")
+        } else {
+            if (handleDeath.wasDeathHappened()) {
+                Log.i(TAG, "activityCreated: death happened")
+            } else {
+                Log.i(TAG, "activityCreated: just activity recreated")
+            }
+        }
     }
 }
